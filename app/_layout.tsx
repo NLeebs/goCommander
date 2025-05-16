@@ -1,26 +1,17 @@
+import { ErrorScreen, LoadingScreen } from "@/components";
 import "@/global.css";
-import { DefaultTheme, ThemeProvider } from "@react-navigation/native";
+import { darkColorTheme, lightColorTheme } from "@/paper-themes";
+import { ThemeProvider } from "@react-navigation/native";
 import { useFonts } from "expo-font";
 import { Stack } from "expo-router";
 import { ErrorBoundary } from "react-error-boundary";
-import { Text, View } from "react-native";
-import { PaperProvider } from "react-native-paper";
+import { useColorScheme } from "react-native";
+import { MD3DarkTheme, MD3LightTheme, PaperProvider } from "react-native-paper";
 import "react-native-reanimated";
 
-const ErrorFallback = ({ error }: { error: Error }) => (
-  <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-    <Text>Something went wrong:</Text>
-    <Text>{error.message}</Text>
-  </View>
-);
-
-const LoadingScreen = () => (
-  <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-    <Text>Loading...</Text>
-  </View>
-);
-
 export default function RootLayout() {
+  const colorScheme = useColorScheme();
+
   const [loaded] = useFonts({
     SpaceMono: require("../assets/fonts/SpaceMono-Regular.ttf"),
   });
@@ -29,10 +20,33 @@ export default function RootLayout() {
     return <LoadingScreen />;
   }
 
+  const paperTheme =
+    colorScheme === "dark"
+      ? { ...MD3DarkTheme, colors: darkColorTheme.colors }
+      : { ...MD3LightTheme, colors: lightColorTheme.colors };
+
+  const navigationTheme = {
+    dark: colorScheme === "dark",
+    colors: {
+      primary: paperTheme.colors.primary,
+      background: paperTheme.colors.background,
+      card: paperTheme.colors.surface,
+      text: paperTheme.colors.onSurface,
+      border: paperTheme.colors.outline,
+      notification: paperTheme.colors.error,
+    },
+    fonts: {
+      regular: { fontFamily: "System", fontWeight: "400" as const },
+      medium: { fontFamily: "System", fontWeight: "500" as const },
+      bold: { fontFamily: "System", fontWeight: "700" as const },
+      heavy: { fontFamily: "System", fontWeight: "900" as const },
+    },
+  };
+
   return (
-    <ErrorBoundary FallbackComponent={ErrorFallback}>
-      <ThemeProvider value={DefaultTheme}>
-        <PaperProvider>
+    <ErrorBoundary FallbackComponent={ErrorScreen}>
+      <ThemeProvider value={navigationTheme}>
+        <PaperProvider theme={paperTheme}>
           <Stack></Stack>
         </PaperProvider>
       </ThemeProvider>
