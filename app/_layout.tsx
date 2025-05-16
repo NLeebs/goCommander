@@ -4,6 +4,7 @@ import { useFonts } from "expo-font";
 import { Stack } from "expo-router";
 import { ErrorBoundary } from "react-error-boundary";
 import { Text, View } from "react-native";
+import { PaperProvider } from "react-native-paper";
 import "react-native-reanimated";
 
 const ErrorFallback = ({ error }: { error: Error }) => (
@@ -31,7 +32,9 @@ export default function RootLayout() {
   return (
     <ErrorBoundary FallbackComponent={ErrorFallback}>
       <ThemeProvider value={DefaultTheme}>
-        <Stack></Stack>
+        <PaperProvider>
+          <Stack></Stack>
+        </PaperProvider>
       </ThemeProvider>
     </ErrorBoundary>
   );

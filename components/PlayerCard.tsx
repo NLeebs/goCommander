@@ -1,9 +1,13 @@
-import { Text, View } from "react-native";
+import * as React from "react";
+import { Card, Text } from "react-native-paper";
 
 export default function PlayerCard() {
   return (
-    <View className="flex-1 justify-center items-center bg-neutral-50 rounded-lg p-4">
-      <Text>Hello Player</Text>
-    </View>
+    <Card>
+      <Card.Title title="Hello Player" />
+      <Card.Content>
+        <Text variant="bodyMedium">This is where you do battle</Text>
+      </Card.Content>
+    </Card>
   );
 }
