@@ -1,4 +1,4 @@
-import { PlayerContainer } from "@/app/components";
+import { PlayerContainer } from "@/components";
 import { View } from "react-native";
 
 export default function Index() {

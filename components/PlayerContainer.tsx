@@ -1,4 +1,4 @@
-import { PlayerCard } from "@/app/components";
+import { PlayerCard } from "@/components";
 import { View } from "react-native";
 
 export default function PlayerContainer() {
