@@ -1,6 +1,7 @@
 import { ErrorScreen, LoadingScreen } from "@/components";
 import "@/global.css";
 import { darkColorTheme, lightColorTheme } from "@/paper-themes";
+import { fontTheme } from "@/paper-themes/fontTheme";
 import { ThemeProvider } from "@react-navigation/native";
 import { useFonts } from "expo-font";
 import { Stack } from "expo-router";
@@ -14,6 +15,7 @@ export default function RootLayout() {
 
   const [loaded] = useFonts({
     SpaceMono: require("../assets/fonts/SpaceMono-Regular.ttf"),
+    "Roboto-Regular": require("../assets/fonts/Roboto-Regular.ttf"),
   });
 
   if (!loaded) {
@@ -22,8 +24,8 @@ export default function RootLayout() {
 
   const paperTheme =
     colorScheme === "dark"
-      ? { ...MD3DarkTheme, colors: darkColorTheme.colors }
-      : { ...MD3LightTheme, colors: lightColorTheme.colors };
+      ? { ...MD3DarkTheme, colors: darkColorTheme.colors, fonts: fontTheme }
+      : { ...MD3LightTheme, colors: lightColorTheme.colors, fonts: fontTheme };
 
   const navigationTheme = {
     dark: colorScheme === "dark",
