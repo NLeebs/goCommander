@@ -1,23 +1,10 @@
 import { View } from "react-native";
-import PlayerCard from "./PlayerCard";
+import FourPlayerSideBySideGrid from "./FourPlayerSideBySideGrid";
 
 export default function PlayerContainer() {
   return (
-    <View testID="player-container" className="flex-1 p-4">
-      <View className="flex-row flex-wrap justify-between">
-        <View className="w-[48%] mb-4">
-          <PlayerCard testID="player-card" />
-        </View>
-        <View className="w-[48%] mb-4">
-          <PlayerCard testID="player-card" />
-        </View>
-        <View className="w-[48%] mb-4">
-          <PlayerCard testID="player-card" />
-        </View>
-        <View className="w-[48%] mb-4">
-          <PlayerCard testID="player-card" />
-        </View>
-      </View>
+    <View className="flex-1 w-full p-4">
+      <FourPlayerSideBySideGrid />
     </View>
   );
 }

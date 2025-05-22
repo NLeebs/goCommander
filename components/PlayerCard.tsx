@@ -1,18 +1,36 @@
+import {
+  PlayerCardHorizontalContent,
+  PlayerCardVerticalContent,
+} from "@/components";
+import { Orientation } from "@/types";
+import { usePaperTheme } from "@/utils/theme";
 import * as React from "react";
-import { Card, Text } from "react-native-paper";
+import { View } from "react-native";
 
 interface PlayerCardProps {
   testID?: string;
+  orientation?: Orientation;
 }
 
-const PlayerCard: React.FC<PlayerCardProps> = ({ testID }) => {
+const PlayerCard: React.FC<PlayerCardProps> = ({
+  testID,
+  orientation = "up",
+}) => {
+  const paperTheme = usePaperTheme();
+
   return (
-    <Card testID={testID}>
-      <Card.Title title="Hello Player" />
-      <Card.Content>
-        <Text variant="bodyMedium">This is where you do battle</Text>
-      </Card.Content>
-    </Card>
+    <View
+      className="flex-1 rounded-lg"
+      testID={testID}
+      style={{ backgroundColor: paperTheme.colors.surfaceVariant }}
+    >
+      {(orientation === "up" || orientation === "down") && (
+        <PlayerCardVerticalContent />
+      )}
+      {(orientation === "left" || orientation === "right") && (
+        <PlayerCardHorizontalContent orientation={orientation} />
+      )}
+    </View>
   );
 };
 
