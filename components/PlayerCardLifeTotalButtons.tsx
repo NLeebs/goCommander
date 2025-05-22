@@ -15,8 +15,10 @@ const PlayerCardLifeTotalButtons: React.FC<PlayerCardLifeTotalButtonsProps> = ({
 }) => {
   const paperTheme = usePaperTheme();
   const { updatePlayerLifeTotal } = useStore();
+
   const [decreaseOverlayOpacity] = useState(new Animated.Value(0));
   const [increaseOverlayOpacity] = useState(new Animated.Value(0));
+
   const decreaseIntervalRef = useRef<number | null>(null);
   const increaseIntervalRef = useRef<number | null>(null);
   const currentLifeTotalRef = useRef(lifeTotal);
@@ -33,7 +35,6 @@ const PlayerCardLifeTotalButtons: React.FC<PlayerCardLifeTotalButtonsProps> = ({
     if (decreaseIntervalRef.current !== null) {
       clearInterval(decreaseIntervalRef.current);
     }
-
     decreaseIntervalRef.current = setInterval(() => {
       updatePlayerLifeTotal(playerId, currentLifeTotalRef.current - 10);
     }, 500);
@@ -54,7 +55,6 @@ const PlayerCardLifeTotalButtons: React.FC<PlayerCardLifeTotalButtonsProps> = ({
     if (increaseIntervalRef.current !== null) {
       clearInterval(increaseIntervalRef.current);
     }
-
     increaseIntervalRef.current = setInterval(() => {
       updatePlayerLifeTotal(playerId, currentLifeTotalRef.current + 10);
     }, 500);
