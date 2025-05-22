@@ -43,8 +43,14 @@ export const createPlayerSlice: StateCreator<
 
   updatePlayerLifeTotal: (id: number, lifeTotal: number) =>
     set((state) => ({
-      players: state.players.map((player) =>
-        player.id === id ? { ...player, lifeTotal } : player
-      ),
+      players: state.players.map((player) => {
+        if (player.id === id) {
+          return lifeTotal > 0
+            ? { ...player, lifeTotal, isAlive: true }
+            : { ...player, lifeTotal: 0, isAlive: false };
+        } else {
+          return player;
+        }
+      }),
     })),
 });

@@ -1,2 +1,3 @@
+export * from "@/utils/animationUtils";
 export * from "@/utils/styleUtils";
-export { getThemeColor } from "@/utils/theme";
+export * from "@/utils/themeUtils";

@@ -1,6 +1,5 @@
 import { Orientation } from "@/types";
-import { getRotationInDegrees } from "@/utils";
-import { usePaperTheme } from "@/utils/theme";
+import { getRotationInDegrees, usePaperTheme } from "@/utils";
 import React, { useState } from "react";
 import { LayoutChangeEvent, Text, View } from "react-native";
 

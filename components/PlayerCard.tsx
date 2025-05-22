@@ -1,5 +1,6 @@
+import { PlayerCardLifeTotalButtons } from "@/components";
 import { Orientation, Player } from "@/types";
-import { usePaperTheme } from "@/utils/theme";
+import { usePaperTheme } from "@/utils";
 import * as React from "react";
 import { View } from "react-native";
 import { Text } from "react-native-paper";
@@ -23,6 +24,11 @@ const PlayerCard: React.FC<PlayerCardProps> = ({
       testID={testID}
       style={{ backgroundColor: paperTheme.colors.surfaceVariant }}
     >
+      <PlayerCardLifeTotalButtons
+        playerId={player.id}
+        lifeTotal={player.lifeTotal}
+      />
+
       <View className="flex-row justify-center items-center p-4">
         <Text
           variant="titleMedium"
@@ -31,18 +37,8 @@ const PlayerCard: React.FC<PlayerCardProps> = ({
           Player Name
         </Text>
       </View>
-      <View className="flex-row justify-between items-center p-4">
-        <Text
-          variant="headlineMedium"
-          style={{ color: paperTheme.colors.primary }}
-          className="px-4"
-        >
-          -
-        </Text>
+      <View className="flex-row justify-center items-center p-4">
         <Text variant="headlineLarge">{player.lifeTotal}</Text>
-        <Text variant="headlineMedium" className="px-4">
-          +
-        </Text>
       </View>
       <View className="flex-row justify-center items-center p-4">
         <Text variant="bodyLarge">Counters</Text>

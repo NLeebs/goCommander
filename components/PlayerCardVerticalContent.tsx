@@ -1,4 +1,4 @@
-import { usePaperTheme } from "@/utils/theme";
+import { usePaperTheme } from "@/utils";
 import React from "react";
 import { View } from "react-native";
 import { Text } from "react-native-paper";
