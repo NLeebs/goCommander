@@ -1,7 +1,11 @@
 import { ErrorScreen, LoadingScreen } from "@/components";
 import "@/global.css";
-import { darkColorTheme, lightColorTheme } from "@/paper-themes";
-import { fontTheme } from "@/paper-themes/fontTheme";
+import {
+  darkColorTheme,
+  fontTheme,
+  getModalTheme,
+  lightColorTheme,
+} from "@/paper-themes";
 import { ThemeProvider } from "@react-navigation/native";
 import { useFonts } from "expo-font";
 import { Stack } from "expo-router";
@@ -22,10 +26,15 @@ export default function RootLayout() {
     return <LoadingScreen />;
   }
 
-  const paperTheme =
-    colorScheme === "dark"
-      ? { ...MD3DarkTheme, colors: darkColorTheme.colors, fonts: fontTheme }
-      : { ...MD3LightTheme, colors: lightColorTheme.colors, fonts: fontTheme };
+  const baseTheme = colorScheme === "dark" ? MD3DarkTheme : MD3LightTheme;
+  const colorTheme = colorScheme === "dark" ? darkColorTheme : lightColorTheme;
+
+  const paperTheme = {
+    ...baseTheme,
+    colors: colorTheme.colors,
+    fonts: fontTheme,
+    modal: getModalTheme(baseTheme),
+  };
 
   const navigationTheme = {
     dark: colorScheme === "dark",

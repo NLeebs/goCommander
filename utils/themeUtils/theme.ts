@@ -1,7 +1,8 @@
+import { CustomPaperTheme } from "@/types";
 import { MD3Theme, useTheme } from "react-native-paper";
 
 export const usePaperTheme = () => {
-  const theme = useTheme();
+  const theme = useTheme() as CustomPaperTheme;
   return theme;
 };
 
