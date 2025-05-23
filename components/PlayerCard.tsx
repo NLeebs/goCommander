@@ -34,7 +34,7 @@ const PlayerCard: React.FC<PlayerCardProps> = ({
       />
 
       <View className="flex-row justify-center items-center p-4">
-        <PlayerCardName name={player.name} />
+        <PlayerCardName player={player} />
       </View>
       <PlayerCardLifeTotal lifeTotal={player.lifeTotal} />
       <View className="flex-row justify-center items-center p-4">

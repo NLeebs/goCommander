@@ -6,6 +6,7 @@ export interface PlayerSlice {
   addPlayer: (player: Player) => void;
   removePlayer: (id: number) => void;
   getPlayer: (id: number) => Player | undefined;
+  updatePlayerName: (id: number, name: string) => void;
   updatePlayerLifeTotal: (id: number, lifeTotal: number) => void;
 }
 
@@ -40,6 +41,17 @@ export const createPlayerSlice: StateCreator<
     const state = get();
     return state.players.find((player) => player.id === id);
   },
+
+  updatePlayerName: (id: number, name: string) =>
+    set((state) => ({
+      players: state.players.map((player) => {
+        if (player.id === id) {
+          return { ...player, name };
+        } else {
+          return player;
+        }
+      }),
+    })),
 
   updatePlayerLifeTotal: (id: number, lifeTotal: number) =>
     set((state) => ({

@@ -1,13 +1,14 @@
 import { PlayerCardEditPlayerModal } from "@/components";
+import { Player } from "@/types";
 import { usePaperTheme } from "@/utils";
 import React, { useState } from "react";
 import { Button, Text } from "react-native-paper";
 
 interface PlayerCardNameProps {
-  name: string;
+  player: Player;
 }
 
-const PlayerCardName: React.FC<PlayerCardNameProps> = ({ name }) => {
+const PlayerCardName: React.FC<PlayerCardNameProps> = ({ player }) => {
   const paperTheme = usePaperTheme();
   const [isEditPlayerModalVisible, setIsEditPlayerModalVisible] =
     useState(false);
@@ -27,11 +28,12 @@ const PlayerCardName: React.FC<PlayerCardNameProps> = ({ name }) => {
         onPress={handleEditPlayerModalOpen}
         buttonColor={paperTheme.colors.surface}
       >
-        <Text variant="headlineMedium">{name}</Text>
+        <Text variant="headlineMedium">{player.name}</Text>
       </Button>
       <PlayerCardEditPlayerModal
         visible={isEditPlayerModalVisible}
         onClose={handleEditPlayerModalClose}
+        player={player}
       />
     </>
   );
