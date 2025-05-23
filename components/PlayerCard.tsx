@@ -1,4 +1,8 @@
-import { PlayerCardLifeTotal, PlayerCardLifeTotalButtons } from "@/components";
+import {
+  PlayerCardLifeTotal,
+  PlayerCardLifeTotalButtons,
+  PlayerCardName,
+} from "@/components";
 import { Orientation, Player } from "@/types";
 import { usePaperTheme } from "@/utils";
 import * as React from "react";
@@ -30,12 +34,7 @@ const PlayerCard: React.FC<PlayerCardProps> = ({
       />
 
       <View className="flex-row justify-center items-center p-4">
-        <Text
-          variant="titleMedium"
-          style={{ color: paperTheme.colors.onSurfaceVariant }}
-        >
-          Player Name
-        </Text>
+        <PlayerCardName name={player.name} />
       </View>
       <PlayerCardLifeTotal lifeTotal={player.lifeTotal} />
       <View className="flex-row justify-center items-center p-4">

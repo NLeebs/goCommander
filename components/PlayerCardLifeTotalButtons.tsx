@@ -72,6 +72,7 @@ const PlayerCardLifeTotalButtons: React.FC<PlayerCardLifeTotalButtonsProps> = ({
       <TouchableOpacity
         onPress={handleDecreaseLifeTotalPress}
         onLongPress={handleDecreaseLifeTotalLongPress}
+        delayLongPress={200}
         onPressIn={() => animateOverlay(decreaseOverlayOpacity, 0.3)}
         onPressOut={() => {
           animateOverlay(decreaseOverlayOpacity, 0);
@@ -92,6 +93,7 @@ const PlayerCardLifeTotalButtons: React.FC<PlayerCardLifeTotalButtonsProps> = ({
       <TouchableOpacity
         onPress={handleIncreaseLifeTotalPress}
         onLongPress={handleIncreaseLifeTotalLongPress}
+        delayLongPress={200}
         onPressIn={() => animateOverlay(increaseOverlayOpacity, 0.3)}
         onPressOut={() => {
           animateOverlay(increaseOverlayOpacity, 0);
